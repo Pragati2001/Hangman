@@ -1,0 +1,383 @@
+@charset "UTF-8";
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed,
+figure, figcaption, footer, header, hgroup,
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline;
+}
+
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure,
+footer, header, hgroup, menu, nav, section {
+  display: block;
+}
+
+body {
+  line-height: 1;
+}
+
+ol, ul {
+  list-style: none;
+}
+
+blockquote, q {
+  quotes: none;
+}
+
+blockquote:before, blockquote:after,
+q:before, q:after {
+  content: '';
+  content: none;
+}
+
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+.game-wrapper {
+  height: 100vh;
+  width: 100vw;
+  background: #323232;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.left-pane {
+  width: 30%;
+  height: 100vh;
+  background: #FFF2F9;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: end;
+      -ms-flex-align: end;
+          align-items: flex-end;
+}
+
+.right-pane {
+  -webkit-box-flex: 1;
+      -ms-flex: 1;
+          flex: 1;
+  color: white;
+}
+
+.start-button {
+  font-family: 'Mochiy Pop P One', sans-serif;
+  background: #FFF2F9;
+  padding: 1rem 2.5rem;
+  display: -ms-inline-grid;
+  display: inline-grid;
+  place-items: center;
+  font-size: 2rem;
+  color: #323232;
+  border-radius: 15px;
+  border: 2px solid #FA4EAB;
+  position: relative;
+  -webkit-transform-style: preserve-3d;
+          transform-style: preserve-3d;
+  -webkit-transition: background 150ms ease-in-out, -webkit-transform 150ms ease-in-out;
+  transition: background 150ms ease-in-out, -webkit-transform 150ms ease-in-out;
+  transition: transform 150ms ease-in-out, background 150ms ease-in-out;
+  transition: transform 150ms ease-in-out, background 150ms ease-in-out, -webkit-transform 150ms ease-in-out;
+  cursor: pointer;
+}
+
+.start-button::before {
+  content: "";
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  background: repeating-linear-gradient(to right, transparent, transparent 5px, #FA4EAB 5px, #FA4EAB 10px), #FE83C6;
+  border: 2px solid #FA4EAB;
+  border-radius: 15px;
+  -webkit-transform: translate3d(0, 1.5rem, -2rem);
+          transform: translate3d(0, 1.5rem, -2rem);
+  -webkit-box-shadow: 0px 15px 4px -2px rgba(254, 131, 198, 0.25);
+          box-shadow: 0px 15px 4px -2px rgba(254, 131, 198, 0.25);
+  -webkit-transition: -webkit-transform 150ms ease-in-out, -webkit-box-shadow 150ms ease-in-out;
+  transition: -webkit-transform 150ms ease-in-out, -webkit-box-shadow 150ms ease-in-out;
+  transition: transform 150ms ease-in-out, box-shadow 150ms ease-in-out;
+  transition: transform 150ms ease-in-out, box-shadow 150ms ease-in-out, -webkit-transform 150ms ease-in-out, -webkit-box-shadow 150ms ease-in-out;
+}
+
+.start-button:active, .start-button:hover {
+  -webkit-transform: translate(0, 0.5rem);
+          transform: translate(0, 0.5rem);
+  background: #ffe5f3;
+}
+
+.start-button:active::before, .start-button:hover::before {
+  -webkit-transform: translate3d(0, 1rem, -2rem);
+          transform: translate3d(0, 1rem, -2rem);
+  -webkit-box-shadow: 0px 10px 4px -2px rgba(254, 131, 198, 0.25);
+          box-shadow: 0px 10px 4px -2px rgba(254, 131, 198, 0.25);
+}
+
+.start-button--letter {
+  padding: 1rem 1.5rem;
+  margin-bottom: 2rem;
+  margin-left: 0.5rem;
+  margin-right: 0.5rem;
+}
+
+.hangman-container {
+  position: relative;
+  padding-left: 10rem;
+  padding-top: 8rem;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  height: 750px;
+}
+
+.pole {
+  position: absolute;
+  height: 750px;
+  top: 2rem;
+  left: 3rem;
+  border-left: 10px solid brown;
+  border-top: 10px solid brown;
+  width: 10rem;
+}
+
+.pole::after {
+  content: "";
+  height: 5.5rem;
+  width: 10px;
+  background: brown;
+  position: absolute;
+  right: 0;
+}
+
+.hangman {
+  position: relative;
+}
+
+.hangman__element {
+  opacity: 0.1;
+}
+
+.hangman__element:nth-child(1) {
+  height: 100px;
+  width: 100px;
+  border-radius: 50%;
+  border: 10px solid black;
+}
+
+.hangman__element:not(:first-child) {
+  height: 100px;
+  width: 10px;
+  background: black;
+}
+
+.hangman__element:nth-child(2) {
+  position: absolute;
+  height: 300px;
+  left: 55px;
+}
+
+.hangman__element:nth-child(3) {
+  position: absolute;
+  -webkit-transform: rotate(45deg);
+          transform: rotate(45deg);
+  top: 150px;
+  left: 20px;
+}
+
+.hangman__element:nth-child(4) {
+  position: absolute;
+  -webkit-transform: rotate(-45deg);
+          transform: rotate(-45deg);
+  top: 150px;
+  left: 90px;
+}
+
+.hangman__element:nth-child(5) {
+  position: absolute;
+  -webkit-transform: rotate(45deg);
+          transform: rotate(45deg);
+  top: 400px;
+  left: 20px;
+}
+
+.hangman__element:nth-child(6) {
+  position: absolute;
+  -webkit-transform: rotate(-45deg);
+          transform: rotate(-45deg);
+  top: 400px;
+  left: 90px;
+}
+
+.hangman-1 .hangman__element:nth-child(1) {
+  opacity: 1;
+}
+
+.hangman-2 .hangman__element:nth-child(1) {
+  opacity: 1;
+}
+
+.hangman-2 .hangman__element:nth-child(2) {
+  opacity: 1;
+}
+
+.hangman-3 .hangman__element:nth-child(1) {
+  opacity: 1;
+}
+
+.hangman-3 .hangman__element:nth-child(2) {
+  opacity: 1;
+}
+
+.hangman-3 .hangman__element:nth-child(3) {
+  opacity: 1;
+}
+
+.hangman-4 .hangman__element:nth-child(1) {
+  opacity: 1;
+}
+
+.hangman-4 .hangman__element:nth-child(2) {
+  opacity: 1;
+}
+
+.hangman-4 .hangman__element:nth-child(3) {
+  opacity: 1;
+}
+
+.hangman-4 .hangman__element:nth-child(4) {
+  opacity: 1;
+}
+
+.hangman-5 .hangman__element:nth-child(1) {
+  opacity: 1;
+}
+
+.hangman-5 .hangman__element:nth-child(2) {
+  opacity: 1;
+}
+
+.hangman-5 .hangman__element:nth-child(3) {
+  opacity: 1;
+}
+
+.hangman-5 .hangman__element:nth-child(4) {
+  opacity: 1;
+}
+
+.hangman-5 .hangman__element:nth-child(5) {
+  opacity: 1;
+}
+
+.hangman-6 .hangman__element:nth-child(1) {
+  opacity: 1;
+}
+
+.hangman-6 .hangman__element:nth-child(2) {
+  opacity: 1;
+}
+
+.hangman-6 .hangman__element:nth-child(3) {
+  opacity: 1;
+}
+
+.hangman-6 .hangman__element:nth-child(4) {
+  opacity: 1;
+}
+
+.hangman-6 .hangman__element:nth-child(5) {
+  opacity: 1;
+}
+
+.hangman-6 .hangman__element:nth-child(6) {
+  opacity: 1;
+}
+
+.hangman-6 .hangman__element:nth-child(1)::after {
+  content: "● ●";
+  font-size: 3rem;
+  color: black;
+  position: absolute;
+  -webkit-transform: rotate(90deg);
+          transform: rotate(90deg);
+  top: 2%;
+  margin-right: 28%;
+}
+
+.hangman-6 .hangman__element:nth-child(1)::before {
+  content: "(";
+  font-size: 3rem;
+  position: absolute;
+  font-family: sans-serif;
+  -webkit-transform: rotate(90deg);
+          transform: rotate(90deg);
+  font-weight: bold;
+  top: 60px;
+  margin-right: 50px;
+}
+
+.word {
+  font-size: 5rem;
+}
+
+.lives {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  color: #323232;
+  font-size: 3rem;
+  font-family: 'Mochiy Pop P One', sans-serif;
+}
+
+.won {
+  font-size: 44px;
+  color: white;
+}
+
+.display-none {
+  display: none;
+}
+
+.display-flex {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+}
+
+.justify-content-center {
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.justify-content-around {
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
+}
+
+.word-flex {
+  margin-bottom: 5rem;
+}
+/*# sourceMappingURL=main.css.map */

@@ -1,0 +1,195 @@
+@charset "UTF-8";
+.hangman-container {
+  position: relative;
+  padding-left: 10rem;
+  padding-top: 8rem;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  height: 750px;
+}
+
+.pole {
+  position: absolute;
+  height: 750px;
+  top: 2rem;
+  left: 3rem;
+  border-left: 10px solid brown;
+  border-top: 10px solid brown;
+  width: 10rem;
+}
+
+.pole::after {
+  content: "";
+  height: 5.5rem;
+  width: 10px;
+  background: brown;
+  position: absolute;
+  right: 0;
+}
+
+.hangman {
+  position: relative;
+}
+
+.hangman__element {
+  opacity: 0.1;
+}
+
+.hangman__element:nth-child(1) {
+  height: 100px;
+  width: 100px;
+  border-radius: 50%;
+  border: 10px solid black;
+}
+
+.hangman__element:not(:first-child) {
+  height: 100px;
+  width: 10px;
+  background: black;
+}
+
+.hangman__element:nth-child(2) {
+  position: absolute;
+  height: 300px;
+  left: 55px;
+}
+
+.hangman__element:nth-child(3) {
+  position: absolute;
+  -webkit-transform: rotate(45deg);
+          transform: rotate(45deg);
+  top: 150px;
+  left: 20px;
+}
+
+.hangman__element:nth-child(4) {
+  position: absolute;
+  -webkit-transform: rotate(-45deg);
+          transform: rotate(-45deg);
+  top: 150px;
+  left: 90px;
+}
+
+.hangman__element:nth-child(5) {
+  position: absolute;
+  -webkit-transform: rotate(45deg);
+          transform: rotate(45deg);
+  top: 400px;
+  left: 20px;
+}
+
+.hangman__element:nth-child(6) {
+  position: absolute;
+  -webkit-transform: rotate(-45deg);
+          transform: rotate(-45deg);
+  top: 400px;
+  left: 90px;
+}
+
+.hangman-1 .hangman__element:nth-child(1) {
+  opacity: 1;
+}
+
+.hangman-2 .hangman__element:nth-child(1) {
+  opacity: 1;
+}
+
+.hangman-2 .hangman__element:nth-child(2) {
+  opacity: 1;
+}
+
+.hangman-3 .hangman__element:nth-child(1) {
+  opacity: 1;
+}
+
+.hangman-3 .hangman__element:nth-child(2) {
+  opacity: 1;
+}
+
+.hangman-3 .hangman__element:nth-child(3) {
+  opacity: 1;
+}
+
+.hangman-4 .hangman__element:nth-child(1) {
+  opacity: 1;
+}
+
+.hangman-4 .hangman__element:nth-child(2) {
+  opacity: 1;
+}
+
+.hangman-4 .hangman__element:nth-child(3) {
+  opacity: 1;
+}
+
+.hangman-4 .hangman__element:nth-child(4) {
+  opacity: 1;
+}
+
+.hangman-5 .hangman__element:nth-child(1) {
+  opacity: 1;
+}
+
+.hangman-5 .hangman__element:nth-child(2) {
+  opacity: 1;
+}
+
+.hangman-5 .hangman__element:nth-child(3) {
+  opacity: 1;
+}
+
+.hangman-5 .hangman__element:nth-child(4) {
+  opacity: 1;
+}
+
+.hangman-5 .hangman__element:nth-child(5) {
+  opacity: 1;
+}
+
+.hangman-6 .hangman__element:nth-child(1) {
+  opacity: 1;
+}
+
+.hangman-6 .hangman__element:nth-child(2) {
+  opacity: 1;
+}
+
+.hangman-6 .hangman__element:nth-child(3) {
+  opacity: 1;
+}
+
+.hangman-6 .hangman__element:nth-child(4) {
+  opacity: 1;
+}
+
+.hangman-6 .hangman__element:nth-child(5) {
+  opacity: 1;
+}
+
+.hangman-6 .hangman__element:nth-child(6) {
+  opacity: 1;
+}
+
+.hangman-6 .hangman__element:nth-child(1)::after {
+  content: "● ●";
+  font-size: 3rem;
+  color: black;
+  position: absolute;
+  -webkit-transform: rotate(90deg);
+          transform: rotate(90deg);
+  top: 2%;
+  margin-right: 28%;
+}
+
+.hangman-6 .hangman__element:nth-child(1)::before {
+  content: "(";
+  font-size: 3rem;
+  position: absolute;
+  font-family: sans-serif;
+  -webkit-transform: rotate(90deg);
+          transform: rotate(90deg);
+  font-weight: bold;
+  top: 60px;
+  margin-right: 50px;
+}
+/*# sourceMappingURL=hangman.css.map */

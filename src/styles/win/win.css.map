@@ -1,0 +1,9 @@
+{
+    "version": 3,
+    "mappings": "AAAA,AAAA,IAAI,CAAA;EACA,SAAS,EAAE,IAAI;EACf,KAAK,EAAE,KAAK;EACZ,OAAO,EAAE,GAAG;CACf",
+    "sources": [
+        "win.scss"
+    ],
+    "names": [],
+    "file": "win.css"
+}
