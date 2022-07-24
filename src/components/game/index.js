@@ -1,36 +1,46 @@
-import React, { useState } from 'react';
-import Layout from './layout';
-
+import React, { useState } from "react";
+import Layout from "./layout";
 
 const MAX_LIVES = 6;
 export default function Game() {
-    const [playedLetter, setplayedLetter] = useState([]);
-    const [actualWord, setactualWord] = useState("");
+  const [playedLetter, setplayedLetter] = useState([]);
+  const [actualWord, setactualWord] = useState("");
+  const [number, setNumber] = useState(0);
+  const word_set = new Set([...actualWord]);
+  const played_set = new Set([...playedLetter]);
+  const wrongLetter = playedLetter.filter((letter) => {
+    return !word_set.has(letter);
+  });
+  let flag = 1;
+  const words = ["village", "romania", "rock", "duplex", "director"];
 
-    const word_set=new Set([...actualWord]);
-    const played_set=new Set([...playedLetter]);
-    const wrongLetter=playedLetter.filter((letter)=>{
-        return !word_set.has(letter);
+  let lives = MAX_LIVES - wrongLetter.length;
+  const isRunning = lives && actualWord;
+  const isWon =
+    isRunning &&
+    [...word_set].reduce((acc, curr) => {
+      if (!played_set.has(curr)) return false;
+      return acc;
+    }, true);
+  const guess = (letter) => {
+    setplayedLetter((prev) => [...prev, letter]);
+  };
+  const start = () => {
+    words.map((no) => {
+      setactualWord(words[number]);
     });
-
-
-
-    const lives=MAX_LIVES-wrongLetter.length;
-    const isRunning=lives&&actualWord;
-    const isWon=isRunning&&[...word_set].reduce((acc,curr)=>{
-        if (!played_set.has(curr)) return false;
-        return acc;
-    },true)
-    const guess=letter=>{
-        setplayedLetter((prev)=>[...prev,letter]);
+    setplayedLetter([]);
+  };
+  const next_game = (e) => {
+    if (e == "Enter") {
+      setNumber(number + 1);
+      lives = 6;
+      setactualWord("");
+      isWon = 0;
     }
-    const start=()=>{
-        setactualWord("bazzinga")
-        setplayedLetter([]);
-    }
+  };
 
   return (
-    
     <>
       <Layout
         lives={lives}
@@ -40,7 +50,12 @@ export default function Game() {
         start={start}
         isWon={isWon}
         isRunning={isRunning}
+        next_game={next_game}
+        flag={flag}
+        // number={number}
+
+        // setNumber={setNumber}
       />
     </>
-  )
+  );
 }

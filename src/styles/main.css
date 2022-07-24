@@ -349,9 +349,11 @@ table {
   font-family: 'Mochiy Pop P One', sans-serif;
 }
 
-.won {
+.win {
   font-size: 44px;
   color: white;
+  opacity: 0.2;
+  background-color: aqua;
 }
 
 .display-none {
